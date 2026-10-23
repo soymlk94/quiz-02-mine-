@@ -1,0 +1,40 @@
+[project]
+name = "quiz-01"
+version = "0.1.0"
+description = "Practical AI Quiz 01"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "captum>=0.9.0",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.3",
+    "pandas>=3.0.6",
+    "torch>=2.14.0",
+    "torchvision>=0.29.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=9.1.1", "ruff>=0.16.8"]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 79
+target-version = "py313"
+extend-exclude = ["assignment/grading_resources"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+# Student templates intentionally contain references filled in during the quiz.
+"assignment/problem_01.py" = ["F401", "F821"]
+"assignment/problem_02.py" = ["F401", "F821", "F841"]
+
+[tool.pytest.ini_options]
+# Filter warnings to ignore deprecation warnings from TorchVision and Torch JIT
+filterwarnings = [
+    "ignore:The image decoding and encoding capabilities of TorchVision are deprecated:DeprecationWarning",
+    "ignore:.*torch\\.jit\\.load.*is deprecated:FutureWarning",
+]
