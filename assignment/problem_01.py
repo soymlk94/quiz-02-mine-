@@ -121,9 +121,15 @@ def problem_01() -> CustomImageDataset:
         A CustomImageDataset object.
     """
 
-    # **** Start of your code *************************************************
+    resize = v2.Resize((16, 16))
+    vertical_flip = v2.RandomVerticalFlip(p=1.0)
+    horizontal_flip = v2.RandomHorizontalFlip(p=1.0)
 
-    # **** End of your code ***************************************************
+    transform = v2.Compose([
+    resize,
+    vertical_flip,
+    horizontal_flip,
+    ])
 
     dataset = CustomImageDataset(
         annotations_file="./assignment/example_data/custom_dataset/labels.txt",

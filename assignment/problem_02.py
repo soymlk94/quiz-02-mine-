@@ -66,9 +66,11 @@ def problem_02() -> np.ndarray:
     # class 1 is to changes in the input image. Setting target = 2 will check
     # how sensitive model output for class 2 is to changes in the input image.
 
-    # **** Start of your code *************************************************
-
-    # **** End of your code ***************************************************
+    saliency = Saliency(model)
+    actual_attribution = saliency.attribute(
+        test_image_tensor,
+        target=2,
+    )
 
     # Convert the attribution output to an array
     actual_attribution_array = (
